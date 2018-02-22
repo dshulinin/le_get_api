@@ -14,7 +14,8 @@ The only requirement is python 2.7 with the following modules:
 - sys;
 - re.
 
-3. DESCRIPTION\n
+3. DESCRIPTION
+
 All the scripts are briefly described in the following section.
 1) le_get_api.py
 This is the main script which actually pulls the info via Logentries API, removes duplicates (if any) and passes th info to syslog daemon.
