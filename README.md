@@ -1,9 +1,11 @@
 # le_get_api
 
 1. PURPOSE
+
 This set of scripts in python and bash pulls logs from Logentries cloud log management platform and passes them to the syslog daemon of the server it is run on. The syslog then can be configured to forward these events to another server via the network or store the events locally in a file or through them into a pipe etc.
 
 2. PREREQUISITES
+
 All the scripts have been tested on a Centos 7 linux yet they are most likely to be functional on other linux distros.
 The only requirement is python 2.7 with the following modules:
 - datetime;
@@ -31,9 +33,10 @@ Cons: in current version does not monitor each single instance of le_get_api.py 
 This is a config file that holds configs for each application in Logentries that you want to grab logs from. A sample line of config is presented in the sample apps_list.txt. Every line in this file represents one application as follows:
 \<api-key\>,\<log-key\>,\<leql\>,\<Name of app without spaces\>,\<Name of app with spaces\> 
   
- 4. INSTALLATION AND RUNNING
- Just copy these files to /usr/local/le_get_api
- If you want a different dir make a few changes to the scripts.
- Then edit apps_list.txt.
- After that launch with: ./tail_run.sh start
- Stop with: ./tail_run.sh stop
+4. INSTALLATION AND RUNNING
+
+Just copy these files to /usr/local/le_get_api
+If you want a different dir make a few changes to the scripts.
+Then edit apps_list.txt.
+After that launch with: ./tail_run.sh start
+Stop with: ./tail_run.sh stop
