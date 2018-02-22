@@ -14,7 +14,7 @@ The only requirement is python 2.7 with the following modules:
 - sys;
 - re.
 
-3. DESCRIPTION
+3. DESCRIPTION\n
 All the scripts are briefly described in the following section.
 1) le_get_api.py
 This is the main script which actually pulls the info via Logentries API, removes duplicates (if any) and passes th info to syslog daemon.
@@ -28,7 +28,7 @@ Used to "keep an eye" on running instances of le_get_api.py and re-launching tho
 Cons: in current version does not monitor each single instance of le_get_api.py but all of them. That is if ALL instances fail then they will be restarted. Not otherwise.
 4) apps_list.txt
 This is a config file that holds configs for each application in Logentries that you want to grab logs from. A sample line of config is presented in the sample apps_list.txt. Every line in this file represents one application as follows:
-\<api-key\>,<log-key>,<leql>,<Name of app without spaces>,<Name of app with spaces> 
+\<api-key\>,\<log-key\>,\<leql\>,\<Name of app without spaces\>,\<Name of app with spaces\> 
   
  4. INSTALLATION AND RUNNING
  Just copy these files to /usr/local/le_get_api
