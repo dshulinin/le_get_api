@@ -1,2 +1,2 @@
 # le_get_api
-Get Logs from Logentries and stream those via syslog
+This set of scripts in python and bash pulls logs from Logentries cloud log management platform and forwards them via syslog  
