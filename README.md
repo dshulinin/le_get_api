@@ -35,8 +35,8 @@ This is a config file that holds configs for each application in Logentries that
   
 4. INSTALLATION AND RUNNING
 
-Just copy these files to /usr/local/le_get_api
-If you want a different dir make a few changes to the scripts.
-Then edit apps_list.txt.
-After that launch with: ./tail_run.sh start
-Stop with: ./tail_run.sh stop
+Just copy these files to /usr/local/le_get_api. 
+If you want a different dir make a few changes to the scripts. 
+Then edit apps_list.txt. 
+After that launch with: ./tail_run.sh start. 
+Stop with: ./tail_run.sh stop.
