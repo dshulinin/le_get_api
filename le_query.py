@@ -1,9 +1,8 @@
 #!/bin/python
+# logentries connector version 1.0
 
 import requests
 import time
-import logging
-import logging.handlers
 import re
 import sys
 import datetime
