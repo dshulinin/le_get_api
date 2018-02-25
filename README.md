@@ -2,7 +2,7 @@
 
 1. PURPOSE
 
-This set of scripts in python and bash pulls logs from Logentries cloud log management platform and passes them to the syslog daemon of the server it is run on. The syslog then can be configured to forward these events to another server via the network or store the events locally in a file or through them into a pipe etc.
+This set of scripts in python and bash pulls logs from Logentries cloud log management platform and passes them to the syslog daemon of the server it is run on. The syslog then can be configured to forward these events to another server via the network or store the events locally in a file or throw them into a pipe to some app etc.
 
 2. PREREQUISITES
 
