@@ -1,4 +1,5 @@
 #!/bin/bash
+# logentries connector version 1.0
 wdir="/usr/local/le_get_api"
 
 while :
