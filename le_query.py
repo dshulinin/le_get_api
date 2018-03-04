@@ -1,5 +1,4 @@
 #!/bin/python
-# logentries connector version 1.0
 
 import requests
 import time
@@ -14,10 +13,11 @@ logkey=sys.argv[2]
 leq=sys.argv[3]
 appname=sys.argv[4]
 wdir=sys.argv[5]
-last_log_line="null"
-perPage=300
+perPage=int(sys.argv[6])
+timeWait=int(sys.argv[7])
+previous_dump = []
 
-timeint = 75000
+timeint = timeWait*1250
 
 def continue_request(req):
     if 'links' in req.json():
@@ -42,14 +42,18 @@ def handle_response(resp):
         return
 
 def make_request(provided_url=None):
-    strftime('%Y-%m-%d %H:%M:%S.%f')+"\n"
+    print "\n---------------------------------------------\nStartTime: "+str(startTime)+"; Endtime: "+str(endTime)
+    print "Start: "+datetime.datetime.fromtimestamp(startTime/1000).strftime('%Y-%m-%d %H:%M:%S.%f')+" End: "+datetime.datetime.fromtimestamp(endTime/1000).strftime('%Y-%m-%d %H:%M:%S.%f')+"\n"
     headers = {'x-api-key': apikey}
+    print perPage
     url = "https://rest.logentries.com/query/logs/%s/?query=%s&from=%i&to=%i&per_page=%i" % (logkey, leq, startTime, endTime, perPage)
     if provided_url:
         url = provided_url
+    print url
     try:
        req = requests.get(url, headers=headers)
     except requests.exceptions.RequestException as e:
+       print e
        time.sleep(5)
        print_query()
     return req
@@ -66,28 +70,21 @@ def print_query():
     handle_response(req)
 
 def start():
-    syslog.syslog("rt_log: Job started for " + appname + "\n")
+    syslog.syslog("Job started for " + appname + "\n")
     while True:
        print_query()
-       time.sleep(60)
+       time.sleep(timeWait)
 
 def syslog_send(ev_dict,send_log):
    lsent=0
-   trg=0
+   global previous_dump
+   temp_dump = previous_dump
+   previous_dump = []
    for line in ev_dict['events']:
-      if last_log_line!="null":
-         if trg==1:
-            lsent+=1
-            syslog.syslog(str(datetime.datetime.fromtimestamp(line['timestamp']/1000))+" "+line['message'])
-         if line['message'] == last_log_line:
-            trg=1
-      else:
-         lsent+=1
+      if line['message'] not in temp_dump:
+         previous_dump.append(line['message'])
          syslog.syslog(str(datetime.datetime.fromtimestamp(line['timestamp']/1000))+" "+line['message'])
-   global last_log_line
-   try:
-      last_log_line=str(ev_dict['events'][-1]['message'])
-   except Exception:
+         lsent+=1
    syslog.syslog("le_query sent "+str(lsent)+" lines for app "+appname)
 
 if __name__ == '__main__':
