@@ -1,4 +1,4 @@
-# le_get_api
+# Logentries to Syslog
 
 1. PURPOSE
 
