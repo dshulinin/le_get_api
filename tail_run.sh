@@ -14,7 +14,7 @@ then
       appname=`echo $line|awk -F ',' {'print $4'}`
       perpage=`echo $line|awk -F ',' {'print $5'}`
       timeint=`echo $line|awk -F ',' {'print $6'}`
-      nohup $wdir/le_query.py $apikey $logkey $leq $appname $wdir $perpage $timeint&> $wdir/$appname.out&
+      nohup $wdir/le_query.py $apikey $logkey "$leq" $appname $wdir $perpage $timeint&> $wdir/$appname.out&
       disown
       sleep 7 
       pnm=`ps -ef|grep $logkey|grep -v "grep"|awk -F ' ' {'print $2'}`
